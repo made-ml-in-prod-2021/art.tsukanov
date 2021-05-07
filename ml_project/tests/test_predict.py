@@ -21,7 +21,7 @@ def prediction_params():
     params = PredictionParams(
         logging_config_path='tests/logging_config.yaml',
         data_path=DATA_PATH,
-        model_path='models/model_logreg.pkl',
+        model_path='tests/model.pkl',
         output_path=OUTPUT_PATH,
         feature_params=FeatureParams(
             categorical_features=[],

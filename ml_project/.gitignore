@@ -92,5 +92,5 @@ target/
 .hydra
 
 #ml_project files
-model*.pkl
-metrics*.json
+model_*.pkl
+metrics_*.json
