@@ -3,6 +3,27 @@ ml_project
 
 A simple production ready project for heart disease classification problem
 
+Usage
+------------
+Installation:
+~~~
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+~~~
+Run train pipeline:
+~~~
+python src/train_pipeline.py
+~~~
+You can also use Hydra API to run train pipeline with different parameters without editing the config file:
+~~~
+python src/train_pipeline.py splitting_params.val_size=0.3
+~~~
+Run test:
+~~~
+pytest tests/
+~~~
+
 Project Organization
 ------------
 
