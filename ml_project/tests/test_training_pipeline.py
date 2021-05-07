@@ -3,8 +3,8 @@ import json
 
 import pytest
 
-from src import training_pipeline
-from src.entities import (
+from heart_classification import training_pipeline
+from heart_classification.entities import (
     SplittingParams,
     FeatureParams,
     TrainingParams,

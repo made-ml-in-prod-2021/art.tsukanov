@@ -7,17 +7,17 @@ import hydra
 from omegaconf import OmegaConf
 import yaml
 
-from src.entities import TrainingPipelineParams
-from src.data import (
+from heart_classification.entities import TrainingPipelineParams
+from heart_classification.data import (
     read_data,
     split_data,
 )
-from src.features import (
+from heart_classification.features import (
     build_transformer,
     make_features,
     extract_target,
 )
-from src.models import (
+from heart_classification.models import (
     train_model,
     predict_model,
     evaluate_model,

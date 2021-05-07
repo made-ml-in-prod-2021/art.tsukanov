@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.entities import (
+from heart_classification.entities import (
     FeatureParams,
     FeatureTransformer,
 )

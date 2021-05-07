@@ -2,8 +2,8 @@ from math import floor, ceil
 
 import pandas as pd
 
-from src.entities import SplittingParams
-from src.data import (
+from heart_classification.entities import SplittingParams
+from heart_classification.data import (
     read_data,
     split_data,
 )

@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from src.entities import FeatureTransformer
+from heart_classification.entities import FeatureTransformer
 
 DATASET_PATH = 'data/raw/heart.csv'
 

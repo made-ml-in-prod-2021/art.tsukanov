@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 
-from src.entities import TrainingParams
+from heart_classification.entities import TrainingParams
 
 SklearnClassifier = Union[LogisticRegression, SVC]
 

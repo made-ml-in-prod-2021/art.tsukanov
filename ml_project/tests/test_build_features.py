@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from src.entities import FeatureParams
-from src.features import (
+from heart_classification.entities import FeatureParams
+from heart_classification.features import (
     build_transformer,
     make_features,
     extract_target,

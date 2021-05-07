@@ -13,13 +13,17 @@ pip install -r requirements.txt
 ~~~
 Run train pipeline:
 ~~~
-python src/train_pipeline.py
+python heart_classification/train_pipeline.py
 ~~~
 You can also use Hydra API to run train pipeline with different parameters without editing the config file:
 ~~~
-python src/train_pipeline.py splitting_params.val_size=0.3
+python heart_classification/train_pipeline.py splitting_params.val_size=0.3
 ~~~
-Run test:
+Make prediction:
+~~~
+python heart_classification/predict.py
+~~~
+Run tests:
 ~~~
 pytest tests/
 ~~~

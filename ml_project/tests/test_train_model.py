@@ -5,8 +5,8 @@ import pytest
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 
-from src.entities import TrainingParams
-from src.models import (
+from heart_classification.entities import TrainingParams
+from heart_classification.models import (
     train_model,
     predict_model,
     evaluate_model,
