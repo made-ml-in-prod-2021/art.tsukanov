@@ -18,7 +18,6 @@ jobs:
         pip install -r requirements.txt
         pip install pylint
         pip install pytest
-        cd ml_project
     - name: run pylint
       run: |
         pylint -d missing-function-docstring,missing-module-docstring,missing-class-docstring,logging-fstring-interpolation,invalid-name heart_classification/
