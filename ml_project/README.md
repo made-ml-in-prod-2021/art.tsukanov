@@ -1,7 +1,7 @@
 ml_project
 ==============================
 
-![CI workflow](https://github.com/github/made-ml-in-prod-2021/art.tsukanov/actions/workflows/ci.yml/badge.svg?branch=homework1)
+![CI workflow](https://github.com/made-ml-in-prod-2021/art.tsukanov/actions/workflows/ci.yml/badge.svg?branch=homework1)
 
 A simple production ready project for heart disease classification problem
 
