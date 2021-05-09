@@ -26,8 +26,7 @@ feature_params:
         - ca
         - thal
     target_col: target
-training_params:
-    model_type: SVC
-    model_params:
-        C: 1000.0
+model:
+    _target_: sklearn.svm.SVC
+    C: 1000.0
     random_state: 42

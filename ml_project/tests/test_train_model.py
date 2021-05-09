@@ -2,10 +2,9 @@ import numpy as np
 import pandas as pd
 from scipy.stats import gaussian_kde
 import pytest
+from sklearn.base import ClassifierMixin
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
 
-from heart_classification.entities import TrainingParams
 from heart_classification.models import (
     train_model,
     predict_model,
@@ -28,58 +27,33 @@ def target():
     return df[TARGET_COL]
 
 
-@pytest.fixture
-def training_params_logreg():
-    params = TrainingParams(
-        model_type='LogisticRegression',
-        model_params={
-            'C': 0.1,
-            'max_iter': 1000
-        },
-        random_state=42
-    )
-    return params
+def test_train_raises_error_on_no_fit_implemented(features, target):
+    model = ClassifierMixin()
+    with pytest.raises(TypeError):
+        train_model(model, features, target)
 
 
-def test_can_train_logistic_regression(features, target, training_params_logreg):
-    model = train_model(features, target, training_params_logreg)
-    assert isinstance(model, LogisticRegression)
+def test_train_raises_error_on_no_predict_implemented(features):
+    model = ClassifierMixin()
+    with pytest.raises(TypeError):
+        predict_model(model, features)
 
 
-def test_can_train_svc(features, target):
-    params = TrainingParams(
-        model_type='SVC',
-        model_params={
-            'C': 1000
-        },
-        random_state=42
-    )
-    model = train_model(features, target, params)
-    assert isinstance(model, SVC)
-
-
-def test_train_raises_error_on_model_type_not_found(features, target):
-    params = TrainingParams(
-        model_type='UnknownModel'
-    )
-    with pytest.raises(NotImplementedError):
-        train_model(features, target, params)
-
-
-def get_model_predicts(features, target, training_params_logreg):
-    model = train_model(features, target, training_params_logreg)
+def get_model_predicts(features, target):
+    model = LogisticRegression(max_iter=1000)
+    train_model(model, features, target)
     predicts = predict_model(model, features)
     return predicts
 
 
-def test_can_predict_model(features, target, training_params_logreg):
-    predicts = get_model_predicts(features, target, training_params_logreg)
+def test_can_predict_model(features, target):
+    predicts = get_model_predicts(features, target)
     assert isinstance(predicts, np.ndarray)
     assert predicts.shape == target.shape
 
 
-def test_can_evaluate_model(features, target, training_params_logreg):
-    predicts = get_model_predicts(features, target, training_params_logreg)
+def test_can_evaluate_model(features, target):
+    predicts = get_model_predicts(features, target)
     metrics = evaluate_model(predicts, target)
     assert 'accuracy' in metrics
     assert 0.5 < metrics['accuracy'] < 1, f'accuracy is {metrics["accuracy"]}'
@@ -97,9 +71,9 @@ def generated_data(features):
     return df_features, target
 
 
-def test_can_process_generated_data(generated_data, training_params_logreg):
+def test_can_process_generated_data(generated_data):
     gen_features, gen_target = generated_data
-    predicts = get_model_predicts(gen_features, gen_target, training_params_logreg)
+    predicts = get_model_predicts(gen_features, gen_target)
     metrics = evaluate_model(predicts, gen_target)
     assert 'accuracy' in metrics
     assert 0.5 < metrics['accuracy'] < 1, f'accuracy is {metrics["accuracy"]}'

@@ -1,9 +1,18 @@
 import numpy as np
 import pandas as pd
+import pytest
+from sklearn.exceptions import NotFittedError
 
 from heart_classification.entities import FeatureTransformer
 
 DATASET_PATH = 'data/raw/heart.csv'
+
+
+def test_raises_error_on_transform_before_fit():
+    df = pd.DataFrame()
+    transformer = FeatureTransformer([], [])
+    with pytest.raises(NotFittedError):
+        transformer.transform(df)
 
 
 def test_can_transform_features():

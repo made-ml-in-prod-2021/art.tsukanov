@@ -4,8 +4,10 @@ import json
 import pickle
 
 import hydra
+from hydra.utils import instantiate
 from omegaconf import OmegaConf
 import yaml
+
 
 from heart_classification.entities import TrainingPipelineParams
 from heart_classification.data import (
@@ -22,8 +24,6 @@ from heart_classification.models import (
     predict_model,
     evaluate_model,
 )
-
-LOGGING_CONFIG_PATH = '../configs/logging_config.yaml'
 
 
 def training_pipeline(training_pipeline_params: TrainingPipelineParams):
@@ -54,7 +54,8 @@ def training_pipeline(training_pipeline_params: TrainingPipelineParams):
     train_target = extract_target(train_df, training_pipeline_params.feature_params)
     val_target = extract_target(val_df, training_pipeline_params.feature_params)
 
-    model = train_model(train_features, train_target, training_pipeline_params.training_params)
+    model = instantiate(training_pipeline_params.model)
+    train_model(model, train_features, train_target)
     with open(training_pipeline_params.output_model_path, 'wb') as fout:
         pickle.dump(model, fout)
 

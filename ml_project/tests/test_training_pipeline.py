@@ -7,7 +7,6 @@ from heart_classification import training_pipeline
 from heart_classification.entities import (
     SplittingParams,
     FeatureParams,
-    TrainingParams,
     TrainingPipelineParams,
 )
 
@@ -45,14 +44,12 @@ def training_pipeline_params():
             ],
             target_col='target',
         ),
-        training_params=TrainingParams(
-            model_type='LogisticRegression',
-            model_params={
-                'C': 0.1,
-                'max_iter': 1000,
-            },
-            random_state=42,
-        ),
+        model={
+            '_target_': 'sklearn.linear_model.LogisticRegression',
+            'C': 0.1,
+            'max_iter': 1000,
+            'random_state': 42,
+        },
     )
     return params
 

@@ -11,8 +11,6 @@ from heart_classification.data import read_data
 from heart_classification.features import build_transformer, make_features
 from heart_classification.models import predict_model
 
-LOGGING_CONFIG_PATH = '../configs/logging_config.yaml'
-
 
 def predict(prediction_params: PredictionParams):
     """

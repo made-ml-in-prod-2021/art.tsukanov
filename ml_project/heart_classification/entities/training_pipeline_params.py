@@ -1,9 +1,8 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from .params import (
     SplittingParams,
     FeatureParams,
-    TrainingParams
 )
 
 
@@ -15,4 +14,9 @@ class TrainingPipelineParams:
     metric_path: str
     splitting_params: SplittingParams
     feature_params: FeatureParams
-    training_params: TrainingParams
+    model: dict = field(default_factory={
+        '_target_': 'sklearn.linear_model.LogisticRegression',
+        'C': 0.1,
+        'max_iter': 1000,
+        'random_state': 42,
+    })

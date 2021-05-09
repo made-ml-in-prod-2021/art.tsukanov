@@ -1,41 +1,30 @@
-from typing import Union, Dict
+from typing import Dict
 
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
+from sklearn.base import ClassifierMixin
 from sklearn.metrics import accuracy_score
-
-from heart_classification.entities import TrainingParams
-
-SklearnClassifier = Union[LogisticRegression, SVC]
 
 
 def train_model(
+    model: ClassifierMixin,
     features: pd.DataFrame,
-    target: pd.Series,
-    train_params: TrainingParams
-) -> SklearnClassifier:
-    if train_params.model_type == 'LogisticRegression':
-        model = LogisticRegression(
-            **train_params.model_params,
-            random_state=train_params.random_state,
-        )
-    elif train_params.model_type == 'SVC':
-        model = SVC(
-            **train_params.model_params,
-            random_state=train_params.random_state,
-        )
-    else:
-        raise NotImplementedError()
+    target: pd.Series
+) -> ClassifierMixin:
+    if not hasattr(model, 'fit'):
+        raise TypeError('Provided model is not a classifier instance. '
+                        'Method "fit" must be implemented.')
     model.fit(features, target)
     return model
 
 
 def predict_model(
-    model: SklearnClassifier,
+    model: ClassifierMixin,
     features: pd.DataFrame
 ) -> np.ndarray:
+    if not hasattr(model, 'predict'):
+        raise TypeError('Provided model is not a classifier instance. '
+                        'Method "predict" must be implemented.')
     predicts = model.predict(features)
     return predicts
 
