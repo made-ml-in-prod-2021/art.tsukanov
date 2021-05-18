@@ -1,7 +1,34 @@
 ml_project
 ==============================
 
+![CI workflow](https://github.com/made-ml-in-prod-2021/art.tsukanov/actions/workflows/ci.yml/badge.svg?branch=homework1)
+
 A simple production ready project for heart disease classification problem
+
+Usage
+------------
+Installation:
+~~~
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+~~~
+Run train pipeline:
+~~~
+python heart_classification/train_pipeline.py
+~~~
+You can also use Hydra API to run train pipeline with different parameters without editing the config file:
+~~~
+python heart_classification/train_pipeline.py splitting_params.val_size=0.3
+~~~
+Make prediction:
+~~~
+python heart_classification/predict.py
+~~~
+Run tests:
+~~~
+pytest tests/
+~~~
 
 Project Organization
 ------------

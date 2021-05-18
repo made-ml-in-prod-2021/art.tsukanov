@@ -76,7 +76,7 @@ target/
 .ipynb_checkpoints/
 
 # exclude data from source control by default
-/data/
+#/data/
 
 # Mac OS-specific storage files
 .DS_Store
@@ -87,3 +87,10 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# Hydra
+.hydra
+
+#ml_project files
+model_*.pkl
+metrics_*.json

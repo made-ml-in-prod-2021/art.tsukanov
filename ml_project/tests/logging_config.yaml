@@ -1,0 +1,13 @@
+version: 1
+handlers:
+    log_handler:
+        class: logging.FileHandler
+        filename: tests/info.log
+        level: INFO
+loggers:
+    stackoverflow_analytics:
+        level: INFO
+        handlers: [log_handler]
+root:
+    level: INFO
+    handlers: [log_handler]

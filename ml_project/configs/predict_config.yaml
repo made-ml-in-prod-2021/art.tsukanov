@@ -1,0 +1,24 @@
+hydra:
+    run:
+        dir: .
+
+logging_config_path: configs/logging_config.yaml
+data_path: data/raw/heart.csv
+model_path: models/model_logreg.pkl
+output_path: models/output.csv
+feature_params:
+    categorical_features: []
+    numerical_features:
+        - age
+        - sex
+        - cp
+        - trestbps
+        - chol
+        - fbs
+        - restecg
+        - thalach
+        - exang
+        - oldpeak
+        - slope
+        - ca
+        - thal

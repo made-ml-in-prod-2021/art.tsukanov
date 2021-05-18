@@ -1,0 +1,32 @@
+hydra:
+    run:
+        dir: .
+
+logging_config_path: configs/logging_config.yaml
+input_data_path: data/raw/heart.csv
+output_model_path: models/model_svc.pkl
+metric_path: models/metrics_svc.json
+splitting_params:
+    val_size: 0.2
+    random_state: 42
+feature_params:
+    categorical_features: []
+    numerical_features:
+        - age
+        - sex
+        - cp
+        - trestbps
+        - chol
+        - fbs
+        - restecg
+        - thalach
+        - exang
+        - oldpeak
+        - slope
+        - ca
+        - thal
+    target_col: target
+model:
+    _target_: sklearn.svm.SVC
+    C: 1000.0
+    random_state: 42
