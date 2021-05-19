@@ -1,5 +1,8 @@
 name: pylint and tests runner
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
 defaults:
   run:
     working-directory: ./ml_project/
