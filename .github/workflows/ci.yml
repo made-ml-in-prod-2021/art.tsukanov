@@ -2,7 +2,7 @@ name: pylint and tests runner
 on:
   push:
     branches:
-      - master
+      - homework1
 defaults:
   run:
     working-directory: ./ml_project/
